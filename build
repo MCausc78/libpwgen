@@ -1,0 +1,26 @@
+#!/bin/bash
+shopt -s globstar
+
+cd src
+SRC="$(eval echo **/**.cpp)"
+cd ..
+
+CXX=clang++
+CXXFLAGS="-fPIC -Wall -Werror -std=c++20 -stdlib=libstdc++ -c -Iinclude"
+LD=clang++
+LDFLAGS="-fPIC -shared"
+
+./clean
+
+mkdir -pv bin/ obj/
+
+for f in $SRC
+do
+	DIR="$(dirname obj/$f.o)"
+	if [ ! -d $DIR ]; then
+		mkdir -pv "$DIR"
+	fi
+	$CXX $CXXFLAGS -o "obj/$f.o" "src/$f"
+done
+
+$LD -o "bin/libpwgen.so" obj/**/**.o $LDFLAGS
