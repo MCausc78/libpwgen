@@ -3,13 +3,13 @@
 
 namespace pwgen::flags {
 	const uint8_t
-		ALL				= 0b00001111,
+		ALL 			= 0b00001111,
 		DEFAULT			= flags::DIGITS | flags::LOWER_ASCII | flags::UPPER_ASCII,
 		DIGITS			= 0b00000100,
 		LOWER_ASCII		= 0b00000010,
 		NONE			= 0b00000000,
 		UPPER_ASCII		= 0b00000001,
-		SPECIAL_SYMBOLS = 0b00001000;
+		SPECIAL_SYMBOLS	= 0b00001000;
 }
 
 namespace pwgen {
